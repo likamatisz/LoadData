@@ -8,6 +8,9 @@ public class Browse extends JDialog {
     private JButton buttonOK;
     private JButton buttonCancel;
     private JTree tree1;
+    private JScrollBar scrollBar1;
+    private JFileChooser fileChooser;
+
 
     public Browse() {
         setContentPane(contentPane);
