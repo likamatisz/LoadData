@@ -1,5 +1,9 @@
 package com.ic;
 
-public class WriteExcelToSQL {
+import java.util.ArrayList;
 
+public class WriteExcelToSQL {
+    public WriteExcelToSQL(ArrayList arrayList) {
+
+    }
 }
