@@ -10,13 +10,18 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 public class WriteExcelToExcel {
-    public WriteExcelToExcel(ArrayList arrayList) throws FileNotFoundException {
+    public WriteExcelToExcel(ArrayList<String[]> arrayList) throws FileNotFoundException {
         FileOutputStream stream = new FileOutputStream(new File("outFile.xls"));
         HSSFWorkbook workBook = new HSSFWorkbook();
         HSSFSheet sheet = workBook.createSheet();
-        HSSFRow row = sheet.createRow(0);
         for (int i = 0; i < arrayList.size(); i++) {
-            row.createCell(i).setCellValue(String.valueOf(arrayList.get(i)));
+            HSSFRow row = sheet.createRow(i);
+            String[] arrayCells = new String[arrayList.get(i).length];
+            arrayCells[i] = arrayList.get(i);
+            for (int j = 0; j < row.getLastCellNum(); j++) {
+
+                row.createCell(j).setCellValue(String.valueOf(arrayCells[j]));
+            }
         }
     }
 }
