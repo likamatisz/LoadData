@@ -4,24 +4,25 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 
 public class WriteExcelToExcel {
-    public WriteExcelToExcel(ArrayList<String[]> arrayList) throws FileNotFoundException {
+    public WriteExcelToExcel(ArrayList<String[]> arrayList) throws IOException {
         FileOutputStream stream = new FileOutputStream(new File("outFile.xls"));
         HSSFWorkbook workBook = new HSSFWorkbook();
         HSSFSheet sheet = workBook.createSheet();
+        HSSFRow row;
         for (int i = 0; i < arrayList.size(); i++) {
-            HSSFRow row = sheet.createRow(i);
+            row = sheet.createRow(i);
             String[] arrayCells = new String[arrayList.get(i).length];
-            arrayCells[i] = arrayList.get(i);
-            for (int j = 0; j < row.getLastCellNum(); j++) {
-
+            for (int y = 0; y < arrayCells.length; y++) {
+                arrayCells[y] = arrayList.get(i)[y];
+            }
+            for (int j = 0; j < arrayCells.length; j++) {
                 row.createCell(j).setCellValue(String.valueOf(arrayCells[j]));
             }
         }
+        workBook.write(stream);
     }
 }
